@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Huntly: Remote Jobs & Online Income Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFFFFF;
+    --surface:#FFFFFF;
+    --surface-2:#F6F7F9;
+    --edge:#E7E9ED;
+    --text:#0B0E14;
+    --text-dim:#5B6472;
+    --text-dimmer:#8A93A3;
+    --primary:#2563EB;
+    --primary-hover:#1D4ED8;
+    --primary-soft:#EEF3FE;
+    --danger:#DC2626;
+    --danger-soft:#FDEDED;
+    --white:#FFFFFF;
+    --shadow:0 1px 2px rgba(15,23,42,0.04);
+  }
+  html[data-theme="dark"]{
+    --bg:#0B0E14;
+    --surface:#12161F;
+    --surface-2:#171C26;
+    --edge:#262C38;
+    --text:#F2F4F8;
+    --text-dim:#9AA3B2;
+    --text-dimmer:#6B7383;
+    --primary:#5B93FF;
+    --primary-hover:#7CA6FF;
+    --primary-soft:rgba(91,147,255,0.12);
+    --danger:#FF7A7A;
+    --danger-soft:rgba(255,122,122,0.1);
+    --shadow:none;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    transition:background .2s ease, color .2s ease;
+  }
+  h1,h2,h3,h4{font-family:'Inter',sans-serif; font-weight:800; line-height:1.15; margin:0; letter-spacing:-0.01em;}
+  a{color:var(--primary); text-decoration:none;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+  .wrap-narrow{max-width:800px;margin:0 auto;padding:0 24px;}
+  p{margin:0 0 14px;color:var(--text-dim);}
+  ul{margin:0;padding:0;}
+  li{list-style:none;}
+  button{font-family:inherit;cursor:pointer;}
+  ::selection{background:var(--primary);color:var(--white);}
+
+  /* ---------- NAV ---------- */
+  nav{border-bottom:1px solid var(--edge);}
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding:18px 24px;}
+  .logo{
+    font-weight:800; font-size:19px; color:var(--text);
+    background:none; border:none; letter-spacing:-0.01em;
+  }
+  .nav-right{display:flex; align-items:center; gap:14px;}
+  .theme-toggle{
+    width:36px; height:36px; border-radius:50%; border:1px solid var(--edge);
+    background:var(--surface); display:flex; align-items:center; justify-content:center;
+    color:var(--text-dim);
+  }
+  .theme-toggle:hover{border-color:var(--text-dimmer); color:var(--text);}
+  .theme-toggle svg{width:17px; height:17px;}
+  html[data-theme="dark"] .icon-sun{display:block;}
+  html[data-theme="dark"] .icon-moon{display:none;}
+  html[data-theme="light"] .icon-sun{display:none;}
+  html[data-theme="light"] .icon-moon{display:block;}
+
+  /* ---------- BUTTONS ---------- */
+  .btn-primary{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    background:var(--primary); color:var(--white); border:none; border-radius:8px;
+    padding:12px 22px; font-size:15px; font-weight:600;
+  }
+  .btn-primary:hover{background:var(--primary-hover);}
+  .btn-outline{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    background:var(--surface); color:var(--text); border:1px solid var(--edge); border-radius:8px;
+    padding:12px 22px; font-size:15px; font-weight:600;
+  }
+  .btn-outline:hover{border-color:var(--text-dimmer);}
+  .btn-sm{padding:9px 16px; font-size:14px; border-radius:7px;}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:100px 0 90px; text-align:center;}
+  .badge{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:13.5px; color:var(--text-dim); font-weight:500;
+    background:var(--surface-2); border:1px solid var(--edge);
+    padding:7px 16px; border-radius:20px; margin-bottom:28px;
+  }
+  .hero h1{font-size:clamp(36px,6.4vw,58px); margin:0 auto 22px; max-width:720px;}
+  .hero h1 .hl{color:var(--primary);}
+  .hero p.lede{
+    max-width:560px; margin:0 auto 34px; font-size:17.5px; color:var(--text-dim);
+  }
+  .hero-actions{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:18px;}
+  .stamp{font-size:13.5px; color:var(--text-dimmer);}
+
+  /* ---------- QUICK HIGHLIGHTS ---------- */
+  .highlights{padding:0 0 100px;}
+  .hl-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--edge); border:1px solid var(--edge); border-radius:14px; overflow:hidden;
+  }
+  .hl-item{background:var(--surface); padding:26px 24px;}
+  .hl-item .num{font-size:13px; font-weight:700; color:var(--primary); margin-bottom:8px;}
+  .hl-item h4{font-size:16px; margin-bottom:6px;}
+  .hl-item p{font-size:14px; margin:0;}
+  @media (max-width:760px){.hl-grid{grid-template-columns:1fr;}}
+
+  footer{
+    border-top:1px solid var(--edge); text-align:center; padding:28px 20px;
+    font-size:13px; color:var(--text-dimmer);
+  }
+  footer span{color:var(--text-dim); font-weight:600;}
+
+  /* =========================================================
+     GUIDE VIEW
+     ========================================================= */
+  #guide{display:none;}
+  .guide-top{
+    border-bottom:1px solid var(--edge); padding:16px 0; position:sticky; top:0; z-index:60;
+    background:var(--bg);
+  }
+  .guide-top .wrap{display:flex; align-items:center; justify-content:space-between;}
+  .back-link{
+    display:inline-flex; align-items:center; gap:6px; color:var(--text-dim);
+    font-size:14px; font-weight:600; background:none; border:none; font-family:inherit;
+  }
+  .back-link:hover{color:var(--text);}
+
+  .guide-hero{padding:48px 0 26px;}
+  .guide-hero .label{
+    font-size:13px; color:var(--text-dimmer); font-weight:600; text-transform:uppercase;
+    letter-spacing:0.06em; margin-bottom:12px; display:block;
+  }
+  .guide-hero h1{font-size:clamp(26px,4.4vw,38px); max-width:680px; margin-bottom:12px;}
+  .guide-hero p{max-width:580px; font-size:16px;}
+
+  .tab-nav{
+    position:sticky; top:57px; z-index:55; background:var(--bg);
+    border-bottom:1px solid var(--edge); padding:0;
+  }
+  .tab-nav .wrap{display:flex; gap:4px; overflow-x:auto; scrollbar-width:none;}
+  .tab-nav .wrap::-webkit-scrollbar{display:none;}
+  .tab-btn{
+    flex:0 0 auto; background:none; border:none; color:var(--text-dim);
+    padding:14px 16px; font-size:14.5px; font-weight:600; white-space:nowrap;
+    border-bottom:2px solid transparent;
+  }
+  .tab-btn.active{color:var(--text); border-bottom-color:var(--primary);}
+  .tab-btn:not(.active):hover{color:var(--text);}
+
+  .tab-panel{display:none; padding:40px 0 90px; animation:fadeIn .2s ease;}
+  .tab-panel.active{display:block;}
+  @keyframes fadeIn{from{opacity:0;} to{opacity:1;}}
+
+  h2.g-title{font-size:clamp(22px,3.2vw,28px); margin-bottom:12px;}
+  .g-intro{font-size:15.5px; max-width:660px; margin-bottom:32px;}
+  h3.g-sub{font-size:18px; margin:32px 0 14px;}
+
+  /* landscape cards */
+  .land-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-bottom:10px;}
+  .land-card{
+    background:var(--surface); border:1px solid var(--edge); border-radius:12px; padding:22px;
+  }
+  .land-card .k{
+    display:inline-block; font-size:12px; font-weight:600; color:var(--primary);
+    background:var(--primary-soft); padding:3px 10px; border-radius:12px; margin-bottom:10px;
+  }
+  .land-card h4{font-size:16px; margin-bottom:8px;}
+  .land-card p{font-size:14px; margin:0;}
+  @media (max-width:760px){.land-grid{grid-template-columns:1fr;}}
+
+  .callout{
+    background:var(--primary-soft); border:1px solid var(--edge);
+    border-radius:10px; padding:18px 22px; margin:24px 0; font-size:14.5px; color:var(--text-dim);
+  }
+  .callout strong{color:var(--text);}
+  .warning{
+    background:var(--danger-soft); border:1px solid var(--edge);
+    border-radius:10px; padding:22px 24px; margin:24px 0;
+  }
+  .warning h3{font-size:16.5px; color:var(--danger); margin-bottom:12px;}
+  .warning li{font-size:14.5px; color:var(--text-dim); margin-bottom:10px; padding-left:20px; position:relative;}
+  .warning li::before{content:"!"; position:absolute; left:0; top:0; color:var(--danger); font-weight:700;}
+
+  /* accordion roadmap */
+  .accordion-item{background:var(--surface); border:1px solid var(--edge); border-radius:12px; margin-bottom:12px; overflow:hidden;}
+  .acc-head{display:flex; align-items:center; gap:16px; padding:18px 20px; width:100%; background:none; border:none; color:var(--text); text-align:left;}
+  .acc-head .step-num{
+    font-size:13px; font-weight:700; color:var(--primary);
+    background:var(--primary-soft); border-radius:8px; padding:6px 11px; flex-shrink:0;
+  }
+  .acc-head h4{font-size:16px; flex:1;}
+  .acc-head .chev{color:var(--text-dimmer); transition:transform .2s ease; flex-shrink:0;}
+  .accordion-item.open .acc-head .chev{transform:rotate(180deg); color:var(--primary);}
+  .acc-body{max-height:0; overflow:hidden; transition:max-height .3s ease;}
+  .acc-body-in{padding:0 20px 20px 78px;}
+  .acc-body-in p{font-size:14.5px; margin-bottom:10px;}
+  .acc-body-in li{font-size:14.5px; color:var(--text-dim); margin-bottom:9px; padding-left:18px; position:relative;}
+  .acc-body-in li::before{content:"\2192"; position:absolute; left:0; color:var(--primary);}
+
+  /* tables */
+  .tbl-wrap{overflow-x:auto; margin:14px 0 30px; border-radius:12px; border:1px solid var(--edge);}
+  table{width:100%; border-collapse:collapse; font-size:14px; background:var(--surface); min-width:560px;}
+  thead th{
+    background:var(--surface-2); color:var(--text); font-weight:700; font-size:12px;
+    text-transform:uppercase; letter-spacing:0.04em; text-align:left; padding:13px 16px; border-bottom:1px solid var(--edge);
+  }
+  tbody td{padding:13px 16px; border-bottom:1px solid var(--edge); vertical-align:top; color:var(--text-dim);}
+  tbody tr:last-child td{border-bottom:none;}
+  td.plat{font-weight:600; color:var(--text); white-space:nowrap;}
+  td.plat a{color:var(--text); border-bottom:1.5px solid var(--primary); padding-bottom:1px;}
+  td.plat a:hover{color:var(--primary);}
+  td.plat a::after{content:" \2197"; font-size:0.75em; opacity:0.6;}
+
+  /* subtabs */
+  .subtab-nav{display:flex; gap:8px; margin-bottom:22px; flex-wrap:wrap;}
+  .subtab-btn{
+    background:var(--surface); border:1px solid var(--edge); color:var(--text-dim);
+    border-radius:20px; padding:8px 18px; font-size:13.5px; font-weight:600;
+  }
+  .subtab-btn.active{background:var(--primary); border-color:var(--primary); color:var(--white);}
+  .subpanel{display:none;}
+  .subpanel.active{display:block;}
+
+  /* two lanes */
+  .principles{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin:20px 0 10px;}
+  .principle{background:var(--surface); border:1px solid var(--edge); border-radius:10px; padding:18px 20px;}
+  .principle .pnum{
+    display:inline-block; font-size:12px; font-weight:700; color:var(--primary);
+    background:var(--primary-soft); padding:3px 10px; border-radius:12px;
+  }
+  .principle h4{font-size:15.5px; margin:10px 0 6px;}
+  .principle p{font-size:13.5px; margin:0;}
+  @media (max-width:700px){.principles{grid-template-columns:1fr;}}
+
+  .lanes{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:30px 0;}
+  .lane{border-radius:14px; padding:26px 24px; border:1px solid var(--edge);}
+  .lane.slow{background:var(--surface);}
+  .lane.fast{background:var(--primary-soft); border-color:var(--primary);}
+  .lane .tag2{font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; margin-bottom:8px; display:block;}
+  .lane.slow .tag2{color:var(--text-dimmer);}
+  .lane.fast .tag2{color:var(--primary);}
+  .lane h3{font-size:21px; margin-bottom:6px;}
+  .lane .sub-note{font-size:13.5px; color:var(--text-dimmer); margin-bottom:16px;}
+  .lane li{margin-bottom:14px; font-size:14px; color:var(--text-dim);}
+  .lane li b{display:block; font-size:14.5px; color:var(--text); margin-bottom:3px;}
+  .lane a{font-weight:600; border-bottom:1px solid var(--primary);}
+  @media (max-width:760px){.lanes{grid-template-columns:1fr;}}
+
+  /* checklist */
+  .ticket{background:var(--surface); border:1px solid var(--edge); border-radius:14px; padding:28px 30px; margin:20px 0;}
+  .ticket h3{font-size:18px; margin-bottom:18px;}
+  .ticket ul{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:12px 24px;}
+  .ticket li{font-size:14px; color:var(--text-dim); padding-left:26px; position:relative;}
+  .ticket li::before{content:"\2610"; position:absolute; left:0; top:-1px; color:var(--primary); font-size:15px;}
+  @media (max-width:640px){.ticket ul{grid-template-columns:1fr;}}
+
+  .disclaimer{font-size:12.5px; color:var(--text-dimmer); font-style:italic; margin:20px 0 30px; padding:14px 18px; background:var(--surface-2); border-radius:8px; border:1px solid var(--edge);}
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- LANDING (HUNTLY HOMEPAGE) -->
+<!-- ============================================================ -->
+<div id="landing">
+
+  <nav>
+    <div class="wrap">
+      <button class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">Huntly</button>
+      <div class="nav-right">
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><line x1="12" y1="2" x2="12" y2="4"></line><line x1="12" y1="20" x2="12" y2="22"></line><line x1="4.2" y1="4.2" x2="5.6" y2="5.6"></line><line x1="18.4" y1="18.4" x2="19.8" y2="19.8"></line><line x1="2" y1="12" x2="4" y2="12"></line><line x1="20" y1="12" x2="22" y2="12"></line><line x1="4.2" y1="19.8" x2="5.6" y2="18.4"></line><line x1="18.4" y1="5.6" x2="19.8" y2="4.2"></line></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1111.2 3 7 7 0 0021 12.8z"></path></svg>
+        </button>
+        <button class="btn-primary btn-sm" onclick="showGuide()">Get started</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="wrap">
+      <h1>Find remote work.<br>Build income that <span class="hl">lasts.</span></h1>
+      <p class="lede">A clear, simple guide to landing a real remote job and building online income that keeps paying you. Written in plain language. Free to read, right now.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="showGuide()">Get started free</button>
+        <button class="btn-outline" onclick="document.getElementById('preview').scrollIntoView({behavior:'smooth'})">See what's inside</button>
+      </div>
+      <div class="stamp">Free forever &middot; No sign up required</div>
+    </div>
+  </section>
+
+  <section class="highlights" id="preview">
+    <div class="wrap">
+      <div class="hl-grid">
+        <div class="hl-item">
+          <div class="num">01</div>
+          <h4>Get hired remotely</h4>
+          <p>An eight step plan to land a real remote job, from resume to offer.</p>
+        </div>
+        <div class="hl-item">
+          <div class="num">02</div>
+          <h4>Build lasting income</h4>
+          <p>Learn the difference between trading hours for cash and building something that pays on its own.</p>
+        </div>
+        <div class="hl-item">
+          <div class="num">03</div>
+          <h4>Real platforms, real links</h4>
+          <p>Job boards for global, African, and Web3 seekers, all in one place.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Huntly</span> &middot; Remote Jobs &amp; Online Income, 2026 Edition
+  </footer>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- GUIDE VIEW -->
+<!-- ============================================================ -->
+<div id="guide">
+
+  <div class="guide-top">
+    <div class="wrap">
+      <button class="back-link" onclick="showLanding()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to home
+      </button>
+      <div class="nav-right">
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><line x1="12" y1="2" x2="12" y2="4"></line><line x1="12" y1="20" x2="12" y2="22"></line><line x1="4.2" y1="4.2" x2="5.6" y2="5.6"></line><line x1="18.4" y1="18.4" x2="19.8" y2="19.8"></line><line x1="2" y1="12" x2="4" y2="12"></line><line x1="20" y1="12" x2="22" y2="12"></line><line x1="4.2" y1="19.8" x2="5.6" y2="18.4"></line><line x1="18.4" y1="5.6" x2="19.8" y2="4.2"></line></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1111.2 3 7 7 0 0021 12.8z"></path></svg>
+        </button>
+        <button class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">Huntly</button>
+      </div>
+    </div>
+  </div>
+
+  <section class="guide-hero">
+    <div class="wrap">
+      <span class="label">Your full guide</span>
+      <h1>Remote Jobs &amp; Online Income</h1>
+      <p>Read it top to bottom, or jump to the part you need. Everything is written in plain, simple words so you can act on it today.</p>
+    </div>
+  </section>
+
+  <nav class="tab-nav">
+    <div class="wrap">
+      <button class="tab-btn active" data-tab="landscape" onclick="showTab('landscape')">Landscape</button>
+      <button class="tab-btn" data-tab="roadmap" onclick="showTab('roadmap')">Roadmap</button>
+      <button class="tab-btn" data-tab="toolkit" onclick="showTab('toolkit')">Toolkit</button>
+      <button class="tab-btn" data-tab="boards" onclick="showTab('boards')">Job Boards</button>
+      <button class="tab-btn" data-tab="fastlane" onclick="showTab('fastlane')">Fast Lane</button>
+      <button class="tab-btn" data-tab="checklist" onclick="showTab('checklist')">Checklist</button>
+    </div>
+  </nav>
+
+  <div class="wrap-narrow">
+
+    <!-- ============ TAB: LANDSCAPE ============ -->
+    <div class="tab-panel active" id="panel-landscape">
+      <h2 class="g-title">How remote hiring really works in 2026</h2>
+      <p class="g-intro">Getting a remote job today is not like it was five years ago. Robots read your resume first. Real people read it second. Here is what you need to know before you send even one application.</p>
+
+      <div class="land-grid">
+        <div class="land-card">
+          <span class="k">Robots first</span>
+          <h4>Two machines check you before a human does</h4>
+          <p>A program called an ATS scans your resume and checks it against the job post. A smarter AI then ranks you against other people. Keep your resume clean. Use real, honest words. That is what gets you through.</p>
+        </div>
+        <div class="land-card">
+          <span class="k">High competition</span>
+          <h4>Everyone is applying right now</h4>
+          <p>More than 200 people apply to most remote jobs today. Sending one generic resume to every job is a weak plan. This guide shows you a better one.</p>
+        </div>
+        <div class="land-card">
+          <span class="k">Watch for fake remote</span>
+          <h4>Some "remote" jobs are not really remote</h4>
+          <p>Some listings say remote but still want you in an office sometimes. Always check the time zone rules before you apply. True remote work means you can work from anywhere.</p>
+        </div>
+        <div class="land-card">
+          <span class="k">Writing matters</span>
+          <h4>Your writing is now part of the test</h4>
+          <p>More companies now ask for a short written task or a recorded video answer. Clear writing and camera comfort are real skills. Practice them like any other skill.</p>
+        </div>
+      </div>
+
+      <div class="callout"><strong>Stay safe:</strong> a real employer will never ask you to pay money upfront for training, a starter kit, or a certificate before you can start. A real employer will always speak to you on video at some point. If either rule is broken, walk away.</div>
+    </div>
+
+    <!-- ============ TAB: ROADMAP ============ -->
+    <div class="tab-panel" id="panel-roadmap">
+      <h2 class="g-title">The eight step road to getting hired</h2>
+      <p class="g-intro">Follow these steps in order. Each one builds on the last. Tap any step to open it.</p>
+
+      <div class="accordion-item open">
+        <button class="acc-head" onclick="toggleAcc(this)">
+          <span class="step-num">01</span>
+          <h4>Know what you bring to the table</h4>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="acc-body" style="max-height:400px;">
+          <div class="acc-body-in">
+            <p>Before you touch your resume, get honest about what you offer. This step alone puts you ahead of most people who skip it.</p>
+            <ul>
+              <li>List your real skills. Include soft skills too, like writing clearly and managing your own time.</li>
+              <li>Know your time zone overlap. Say "4 hours with US Eastern time," not just "flexible."</li>
+              <li>Check your setup. You need steady internet, a backup plan, a quiet room, a working camera and mic.</li>
+              <li>Write down your proof. Freelance work, online courses, or years of using Zoom and Slack all count.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="acc-head" onclick="toggleAcc(this)">
+          <span class="step-num">02</span>
+          <h4>Build a resume that passes both tests</h4>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-in">
+            <ul>
+              <li><b>Keep it simple:</b> one column, plain headings, no pictures or tables. Save it as a real text file.</li>
+              <li><b>Match the title:</b> if the job says "Customer Support Lead," your resume title should say the same thing.</li>
+              <li><b>Use their words, but write your own story:</b> aim for your resume to naturally match about 70% of the job post's words.</li>
+              <li><b>Let AI help, but keep your voice:</b> use tools to fix grammar and structure, but keep your real numbers and real wins in your own words.</li>
+              <li><b>Use numbers when you can.</b> If you cannot, be specific instead of vague. "Answered 40 customer emails a day" beats "handled emails."</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="acc-head" onclick="toggleAcc(this)">
+          <span class="step-num">03</span>
+          <h4>Make LinkedIn work for you</h4>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-in">
+            <ul>
+              <li>Write your About section in three parts: what you do, two or three real wins with numbers, and how you actually work remotely.</li>
+              <li>Fill your Skills section with real remote skills too, like "Async Communication" and "Cross Time Zone Work."</li>
+              <li>Ask people you worked with before for a short recommendation. A real one beats a generic one every time.</li>
+              <li>Show up a little, often. Two or three thoughtful comments a week beats one big burst of posts and then silence.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="acc-head" onclick="toggleAcc(this)">
+          <span class="step-num">04</span>
+          <h4>Know where to actually look</h4>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-in">
+            <p>Different sites work for different goals. Do not just pick one giant board and stop. Spread your effort across three or four of the right ones.</p>
+            <p>We built a full, clickable directory for you, with picks made for global seekers, African job seekers, and Web3 beginners. <a href="#" onclick="showTab('boards'); return false;">Open the Job Board tab now &rarr;</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="acc-head" onclick="toggleAcc(this)">
+          <span class="step-num">05</span>
+          <h4>Apply smart, not fast</h4>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-in">
+            <ul>
+              <li>Change your summary and top lines for each job. Use their actual words.</li>
+              <li>If a post is vague, no pay range, no real team named, check the company yourself before you apply.</li>
+              <li>Open your note with your strongest, most specific reason you fit this exact role.</li>
+              <li>Follow up once, kindly, after one or two weeks. No more than that.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="acc-head" onclick="toggleAcc(this)">
+          <span class="step-num">06</span>
+          <h4>Win the remote interview</h4>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-in">
+            <ul>
+              <li>Test your camera, mic, and internet a full day before. Use a wired connection if you can.</li>
+              <li>Close other apps, mute notifications, sit in a plain well lit spot, and keep a phone number ready as backup.</li>
+              <li>For recorded video interviews, prepare exactly like a live one. A real, specific answer always beats a rehearsed generic one.</li>
+              <li>Send a short, honest thank you message the same day.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="acc-head" onclick="toggleAcc(this)">
+          <span class="step-num">07</span>
+          <h4>Negotiate well and start strong</h4>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-in">
+            <ul>
+              <li>Understand how you will be paid before you say yes: full employee, contractor, agency, or something else. Each one changes your taxes.</li>
+              <li>Check pay by role, level, and region, not just one global number. Ask about time zone rules before you accept.</li>
+              <li>Over communicate in your first 30 days. A new team is learning to trust you fast, and clear updates build that trust quickly.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="acc-head" onclick="toggleAcc(this)">
+          <span class="step-num">08</span>
+          <h4>Keep getting better</h4>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-in">
+            <ul>
+              <li>Get truly good with AI tools in your field. Be ready to explain exactly how you use them, not just that you tried them.</li>
+              <li>Keep a running list of your wins as they happen. It is far easier to update a resume from a live list than to remember two years of work under deadline.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ============ TAB: TOOLKIT ============ -->
+    <div class="tab-panel" id="panel-toolkit">
+      <h2 class="g-title">Your competitive stack</h2>
+      <p class="g-intro">You do not need fifty tools. You need a few real ones, used well. Here is the short list worth knowing.</p>
+
+      <h3 class="g-sub">AI tools worth learning</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Tool</th><th>Use it for</th><th>Why it helps</th></tr></thead>
+          <tbody>
+            <tr><td class="plat"><a href="https://claude.ai" target="_blank" rel="noopener">Claude</a></td><td>Writing and thinking through documents</td><td>Great for longer, careful writing</td></tr>
+            <tr><td class="plat"><a href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a></td><td>Fast drafts and brainstorming</td><td>Well known, easy to start with</td></tr>
+            <tr><td class="plat"><a href="https://gemini.google.com" target="_blank" rel="noopener">Gemini</a></td><td>Working inside Google Docs and Gmail</td><td>Handy if your work already lives there</td></tr>
+            <tr><td class="plat"><a href="https://otter.ai" target="_blank" rel="noopener">Otter.ai</a></td><td>Turning meetings into text</td><td>Never miss a note again</td></tr>
+            <tr><td class="plat"><a href="https://www.notion.com" target="_blank" rel="noopener">Notion AI</a></td><td>Notes and your personal knowledge base</td><td>Good home for your running wins list</td></tr>
+            <tr><td class="plat"><a href="https://www.grammarly.com" target="_blank" rel="noopener">Grammarly</a></td><td>A final grammar and clarity check</td><td>Quick check before you hit send</td></tr>
+            <tr><td class="plat"><a href="https://www.canva.com" target="_blank" rel="noopener">Canva</a></td><td>Simple design for decks and posts</td><td>Fast first drafts of any visual</td></tr>
+            <tr><td class="plat"><a href="https://zapier.com" target="_blank" rel="noopener">Zapier</a></td><td>Connecting apps to save time</td><td>A real skill for admin heavy roles</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="g-sub">Free and low cost learning</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Platform</th><th>Best for</th><th>Why it helps</th></tr></thead>
+          <tbody>
+            <tr><td class="plat"><a href="https://www.coursera.org" target="_blank" rel="noopener">Coursera</a></td><td>Real courses from named universities</td><td>Financial aid is often available</td></tr>
+            <tr><td class="plat"><a href="https://www.linkedin.com/learning" target="_blank" rel="noopener">LinkedIn Learning</a></td><td>Short, practical skill courses</td><td>Finished courses can show on your profile</td></tr>
+            <tr><td class="plat"><a href="https://grow.google" target="_blank" rel="noopener">Grow with Google</a></td><td>Free career certificates</td><td>No cost, widely respected</td></tr>
+            <tr><td class="plat"><a href="https://academy.hubspot.com" target="_blank" rel="noopener">HubSpot Academy</a></td><td>Free CRM and marketing certificates</td><td>Great for support and sales roles</td></tr>
+            <tr><td class="plat"><a href="https://www.udemy.com" target="_blank" rel="noopener">Udemy</a></td><td>Cheap, focused skill courses</td><td>Watch for sales, check reviews first</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ============ TAB: JOB BOARDS ============ -->
+    <div class="tab-panel" id="panel-boards">
+      <h2 class="g-title">The full job board directory</h2>
+      <p class="g-intro">Pick two or three from the right list below. Do not try to use all of them at once. Quality beats quantity every time.</p>
+
+      <div class="subtab-nav">
+        <button class="subtab-btn active" data-sub="global" onclick="showSub('global')">Global Boards</button>
+        <button class="subtab-btn" data-sub="africa" onclick="showSub('africa')">Africa</button>
+        <button class="subtab-btn" data-sub="web3" onclick="showSub('web3')">Web3 &amp; Crypto</button>
+      </div>
+
+      <div class="subpanel active" id="sub-global">
+        <p>These boards reach companies all over the world. A great place to start any search.</p>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Platform</th><th>Best for</th><th>Why it helps</th></tr></thead>
+            <tbody>
+              <tr><td class="plat"><a href="https://weworkremotely.com" target="_blank" rel="noopener">We Work Remotely</a></td><td>Tech, design, marketing, support</td><td>One of the biggest, oldest boards around</td></tr>
+              <tr><td class="plat"><a href="https://remoteok.com" target="_blank" rel="noopener">Remote OK</a></td><td>Tech and non-tech roles</td><td>High volume, good for daily checking</td></tr>
+              <tr><td class="plat"><a href="https://www.workingnomads.com" target="_blank" rel="noopener">Working Nomads</a></td><td>A broad mix of remote roles</td><td>Simple, free, updated often</td></tr>
+              <tr><td class="plat"><a href="https://www.flexjobs.com" target="_blank" rel="noopener">FlexJobs</a></td><td>Roles checked for scams</td><td>Paid, but every post is screened by hand</td></tr>
+              <tr><td class="plat"><a href="https://himalayas.app" target="_blank" rel="noopener">Himalayas</a></td><td>Filtering by pay, visa, time zone</td><td>Great for finding truly worldwide roles</td></tr>
+              <tr><td class="plat"><a href="https://remotive.io" target="_blank" rel="noopener">Remotive</a></td><td>Remote first tech companies</td><td>Strong for tech and operations roles</td></tr>
+              <tr><td class="plat"><a href="https://nodesk.co" target="_blank" rel="noopener">NoDesk</a></td><td>General roles plus learning guides</td><td>No account needed to browse</td></tr>
+              <tr><td class="plat"><a href="https://www.toptal.com" target="_blank" rel="noopener">Toptal</a></td><td>Top level freelance work</td><td>Very selective, strong for specialists</td></tr>
+              <tr><td class="plat"><a href="https://wellfound.com" target="_blank" rel="noopener">Wellfound</a></td><td>Startup jobs with visible pay</td><td>Good for fast paced, hands on roles</td></tr>
+              <tr><td class="plat"><a href="https://www.upwork.com" target="_blank" rel="noopener">Upwork</a></td><td>Finding clients directly</td><td>You control your own rates and clients</td></tr>
+              <tr><td class="plat"><a href="https://www.timeetc.com" target="_blank" rel="noopener">Time Etc</a></td><td>Experienced virtual assistants</td><td>Pre-screened roles, flexible hours</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="disclaimer">Many real remote roles are posted first on a company's own careers page, before they ever reach a job board. If a company interests you, check their careers page often.</p>
+      </div>
+
+      <div class="subpanel" id="sub-africa">
+        <p>Built for African job seekers, whether you want to work locally, work for a company overseas, or move somewhere new.</p>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Platform</th><th>Best for</th><th>Why it helps</th></tr></thead>
+            <tbody>
+              <tr><td class="plat"><a href="https://www.jobberman.com" target="_blank" rel="noopener">Jobberman</a></td><td>Nigeria and Ghana, all career levels</td><td>One of Africa's oldest, most trusted boards</td></tr>
+              <tr><td class="plat"><a href="https://www.brightermonday.co.ke" target="_blank" rel="noopener">BrighterMonday</a></td><td>Kenya, Uganda, Tanzania</td><td>The top pick across East Africa</td></tr>
+              <tr><td class="plat"><a href="https://www.myjobmag.com" target="_blank" rel="noopener">MyJobMag</a></td><td>Nigeria and other African markets</td><td>Thousands of active listings, updated daily</td></tr>
+              <tr><td class="plat"><a href="https://www.fuzu.com" target="_blank" rel="noopener">Fuzu</a></td><td>Career growth across Africa</td><td>Great for entry level roles and skill building</td></tr>
+              <tr><td class="plat"><a href="https://remoteafrica.io" target="_blank" rel="noopener">RemoteAfrica</a></td><td>Truly remote roles for African talent</td><td>No sign in wall, direct job postings only</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout"><strong>Tip:</strong> pick one board for your home country and one pan-African board. Keep your profile filled out and active on both. Boards reward people who show up often.</div>
+      </div>
+
+      <div class="subpanel" id="sub-web3">
+        <p>New to crypto? Good news. Web3 needs more than coders. It needs writers, marketers, support agents, and community builders too.</p>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Platform</th><th>Best for</th><th>Why it helps</th></tr></thead>
+            <tbody>
+              <tr><td class="plat"><a href="https://web3.career" target="_blank" rel="noopener">Web3.career</a></td><td>The widest live list of Web3 openings</td><td>Filter by role, stack, and pay</td></tr>
+              <tr><td class="plat"><a href="https://cryptojobslist.com" target="_blank" rel="noopener">CryptoJobsList</a></td><td>Both tech and non-tech crypto roles</td><td>One of the largest, most active crypto boards</td></tr>
+              <tr><td class="plat"><a href="https://crypto.jobs" target="_blank" rel="noopener">Crypto.jobs</a></td><td>Roles at trusted Web3 startups</td><td>Trusted by thousands of crypto companies</td></tr>
+              <tr><td class="plat"><a href="https://remote3.co" target="_blank" rel="noopener">Remote3</a></td><td>Remote-only Web3 roles</td><td>Every listing here is remote by design</td></tr>
+              <tr><td class="plat"><a href="https://cryptocurrencyjobs.co" target="_blank" rel="noopener">Cryptocurrency Jobs</a></td><td>A wide spread of blockchain roles</td><td>Simple to browse, no account needed</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="warning">
+          <h3>Before you apply anywhere in Web3</h3>
+          <ul>
+            <li>A real Web3 job will always name a real, checkable company. Walk away from anything too vague.</li>
+            <li>Token pay with no real dollar value attached is a red flag. Ask what it is actually worth today.</li>
+            <li>A missing pay range in 2026 usually means the company will not commit, not that pay is flexible upward.</li>
+            <li>Check a company's own careers page directly too. Some of the best Web3 roles never touch a public board.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ TAB: FAST LANE ============ -->
+    <div class="tab-panel" id="panel-fastlane">
+      <h2 class="g-title">Choose your lane: making money online</h2>
+      <p class="g-intro">Almost every way to make money online sits in one of two lanes. Know the difference, and you can plan your next move on purpose instead of by accident.</p>
+
+      <div class="disclaimer">This section shares general, public information as of mid-2026 for learning purposes only. It is not financial advice. Real earnings change a lot based on skill, market, and effort. Always check any platform for yourself before you spend time or money.</div>
+
+      <h3 class="g-sub">Four questions to ask about any opportunity</h3>
+      <div class="principles">
+        <div class="principle">
+          <div class="pnum">01</div>
+          <h4>Does it serve one person, or many?</h4>
+          <p>A skill sold one hour at a time helps one client at a time. The same skill turned into a product can help a thousand people with barely more work.</p>
+        </div>
+        <div class="principle">
+          <div class="pnum">02</div>
+          <h4>Does it work without your direct hours?</h4>
+          <p>If the income stops the second you stop working, you are still fully in the slow lane. Ask what would need to be true for it to keep paying while you rest.</p>
+        </div>
+        <div class="principle">
+          <div class="pnum">03</div>
+          <h4>Do you own it, or rent it?</h4>
+          <p>A following on someone else's app can vanish overnight. What you truly own is what grows and stays yours.</p>
+        </div>
+        <div class="principle">
+          <div class="pnum">04</div>
+          <h4>Does it pay once, or keep paying?</h4>
+          <p>A single gig pays once. A template, product, or subscription can pay again and again from the same original work.</p>
+        </div>
+      </div>
+
+      <div class="lanes">
+        <div class="lane slow">
+          <span class="tag2">Start here, fast cash</span>
+          <h3>Slow Lane</h3>
+          <p class="sub-note">Easy to start. Real income, but capped by your hours in the day.</p>
+          <ul>
+            <li><b>Freelance your skills</b> on <a href="https://www.upwork.com" target="_blank" rel="noopener">Upwork</a> or <a href="https://www.fiverr.com" target="_blank" rel="noopener">Fiverr</a>. Writing, design, coding, admin work all count. Typical range: $25 to $150 an hour.</li>
+            <li><b>Virtual assistant work</b> such as email, calendar, and customer support for a small business. Typical range: $15 to $40 an hour.</li>
+            <li><b>Tutor a subject you know</b> on <a href="https://preply.com" target="_blank" rel="noopener">Preply</a> or <a href="https://www.wyzant.com" target="_blank" rel="noopener">Wyzant</a>. Typical range: $20 to $100 an hour.</li>
+            <li><b>Small tasks and testing.</b> Surveys, app testing, transcription. Low pay, but zero skill needed. Treat as extra income only.</li>
+            <li><b>Sell what you already own</b> on <a href="https://www.facebook.com/marketplace" target="_blank" rel="noopener">Facebook Marketplace</a> or <a href="https://www.ebay.com" target="_blank" rel="noopener">eBay</a>. No cost to start.</li>
+            <li><b>Sell one simple digital product</b> such as a template or short guide, on <a href="https://gumroad.com" target="_blank" rel="noopener">Gumroad</a> or <a href="https://www.etsy.com" target="_blank" rel="noopener">Etsy</a>.</li>
+          </ul>
+        </div>
+        <div class="lane fast">
+          <span class="tag2">Build toward this</span>
+          <h3>Fast Lane</h3>
+          <p class="sub-note">More work up front. Much higher ceiling because it no longer scales one to one with your hours.</p>
+          <ul>
+            <li><b>Package your service</b> into a fixed offer, then bring in others to help deliver it, so income stops being capped by you alone.</li>
+            <li><b>Build a real audience</b> with a newsletter on <a href="https://substack.com" target="_blank" rel="noopener">Substack</a> or a niche community. Expect 12 to 24 months before it truly pays off. Most people quit right before it turns a corner.</li>
+            <li><b>Build a course</b> around real expertise, sold on a platform like <a href="https://teachable.com" target="_blank" rel="noopener">Teachable</a> to a real audience, not sold cold.</li>
+            <li><b>Build a small tool</b> that solves one clear problem, sold as a small monthly subscription instead of a one time sale.</li>
+            <li><b>Turn one-on-one teaching into a program.</b> If you already mentor people, a repeatable group program multiplies your time across many people at once.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="warning">
+        <h3>Red flags worth remembering</h3>
+        <ul>
+          <li>Anything asking you to pay first for a "starter kit," "training," or "certificate" before you can earn.</li>
+          <li>Any promise of guaranteed daily income with no real product behind it.</li>
+          <li>Any plan that pays mostly for bringing in other people, not for real work. That is a pyramid, whatever it calls itself.</li>
+          <li>Any crypto "signal group" promising guaranteed returns. Real markets never guarantee anything. Treat the promise itself as the warning sign.</li>
+          <li>Any listing that stays vague about the real work, the real pay, or refuses to let you speak to a real person first.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ============ TAB: CHECKLIST ============ -->
+    <div class="tab-panel" id="panel-checklist">
+      <h2 class="g-title">Your full checklist</h2>
+      <p class="g-intro">Print this, save it, or just come back to it. Tick each box as you go.</p>
+
+      <div class="ticket">
+        <h3>Getting hired remotely</h3>
+        <ul>
+          <li>Resume is one column, plain headings, real text file</li>
+          <li>Resume title matches the job title exactly</li>
+          <li>About 70% natural word match, no keyword stuffing</li>
+          <li>Every claim backed by a real number or a real detail</li>
+          <li>LinkedIn About has a "how I work remotely" line</li>
+          <li>LinkedIn Skills lists async and remote keywords</li>
+          <li>Applications sent to two or three well matched boards</li>
+          <li>Camera and mic tested a day ahead, backup plan ready</li>
+          <li>Pay type understood before accepting any offer</li>
+          <li>A running, dated list of your wins, kept live</li>
+        </ul>
+      </div>
+
+      <div class="ticket">
+        <h3>Choosing your lane</h3>
+        <ul>
+          <li>Does this income stop the moment I stop working?</li>
+          <li>Could this same work serve ten times more people?</li>
+          <li>If I disappeared for a month, would any of it keep paying?</li>
+          <li>Am I building something I own, or renting someone else's space?</li>
+          <li>Did I actually ship something this month, or just research?</li>
+          <li>Is my slow lane income funding a real fast lane bet?</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <footer style="margin-top:20px;">
+    <span>Huntly</span> &middot; Remote Jobs &amp; Online Income, 2026 Edition
+  </footer>
+
+</div>
+
+<script>
+  function showGuide(){
+    document.getElementById('landing').style.display='none';
+    document.getElementById('guide').style.display='block';
+    window.scrollTo(0,0);
+  }
+  function showLanding(){
+    document.getElementById('guide').style.display='none';
+    document.getElementById('landing').style.display='block';
+    window.scrollTo(0,0);
+  }
+  function showTab(name){
+    document.querySelectorAll('.tab-btn').forEach(function(b){
+      b.classList.toggle('active', b.getAttribute('data-tab')===name);
+    });
+    document.querySelectorAll('.tab-panel').forEach(function(p){
+      p.classList.toggle('active', p.id==='panel-'+name);
+    });
+    document.querySelector('.tab-nav').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+  function showSub(name){
+    document.querySelectorAll('.subtab-btn').forEach(function(b){
+      b.classList.toggle('active', b.getAttribute('data-sub')===name);
+    });
+    document.querySelectorAll('.subpanel').forEach(function(p){
+      p.classList.toggle('active', p.id==='sub-'+name);
+    });
+  }
+  function toggleAcc(headBtn){
+    var item = headBtn.parentElement;
+    var body = item.querySelector('.acc-body');
+    var isOpen = item.classList.contains('open');
+    document.querySelectorAll('.accordion-item').forEach(function(el){
+      el.classList.remove('open');
+      el.querySelector('.acc-body').style.maxHeight = null;
+    });
+    if(!isOpen){
+      item.classList.add('open');
+      body.style.maxHeight = body.scrollHeight + 'px';
+    }
+  }
+  function toggleTheme(){
+    var html = document.documentElement;
+    var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    try{ localStorage.setItem('huntly-theme', next); }catch(e){}
+  }
+  (function(){
+    try{
+      var saved = localStorage.getItem('huntly-theme');
+      if(saved){ document.documentElement.setAttribute('data-theme', saved); }
+    }catch(e){}
+  })();
+</script>
+
+</body>
+</html>
